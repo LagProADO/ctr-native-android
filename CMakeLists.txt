@@ -112,9 +112,10 @@ if(CTR_NATIVE_MSVC_FRONTEND)
     )
 else()
     if(NOT ANDROID)
-        target_compile_options(ctr_native PRIVATE -msse)
-    endif()
-    target_compile_options(ctr_native PRIVATE
+      target_compile_options(ctr_native PRIVATE
+        -Wno-error=format-security
+        -Wno-error=implicit-function-declaration
+        -Wno-error=int-conversion
         -Wenum-conversion
         -Wenum-compare
         -Wswitch-enum
