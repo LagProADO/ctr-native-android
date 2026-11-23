@@ -39,7 +39,7 @@ else()
 endif()
 
 if(NOT ANDROID)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-error -Wno-int-conversion -Wno-implicit-function-declaration -g")
 endif()
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-error -g")
 
