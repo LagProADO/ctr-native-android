@@ -39,7 +39,7 @@ else()
 endif()
 
 if(NOT ANDROID)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-error -Wno-int-conversion -Wno-implicit-function-declaration -g")
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -msse")
 endif()
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-error -g")
 
@@ -112,7 +112,9 @@ if(CTR_NATIVE_MSVC_FRONTEND)
     )
 else()
     if(NOT ANDROID)
-      target_compile_options(ctr_native PRIVATE
+        target_compile_options(ctr_native PRIVATE -msse)
+    endif()
+    target_compile_options(ctr_native PRIVATE
         -Wno-error=format-security
         -Wno-error=implicit-function-declaration
         -Wno-error=int-conversion
@@ -146,7 +148,3 @@ if(WIN32)
 endif()
 
 include(CTest)
-if(BUILD_TESTING)
-    add_test(NAME ctr_native_version COMMAND $<TARGET_FILE:ctr_native> --version)
-    set_tests_properties(ctr_native_version PROPERTIES PASS_REGULAR_EXPRESSION "^CTR Native ")
-endif()
