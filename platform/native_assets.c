@@ -563,16 +563,16 @@ int NativeAssets_Init(const char *executableBasePath)
 	NativeStr8 exeDir;
 
 #ifdef __ANDROID__
-	char *storedPath = Platform_Android_GetStoredPath();
+	const char *storedPath = SDL_GetAndroidInternalStoragePath();
 	if (storedPath != NULL)
 	{
 		if (NativeAssets_BaseHasRequiredFile(NativeStr8_FromCString(storedPath)))
 		{
 			int result = NativeAssets_SetBaseDir(NativeStr8_FromCString(storedPath));
-			SDL_free(storedPath);
+			//SDL_free(storedPath);
 			return result;
 		}
-		SDL_free(storedPath);
+		//SDL_free(storedPath);
 	}
 #endif
 
